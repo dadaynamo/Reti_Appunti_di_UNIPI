@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reti Intro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Aggiungi stili CSS per la didascalia */
+        figure {
+            text-align: center;
+        }
+
+        figcaption {
+            font-size: 0.8em;
+            color: #888; /* Colore grigino */
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container d-flex justify-content-center">
+        <h1>Reti Teoria in pillole</h1>
+    </div>
+    
+    <h2>Introduzione alle reti di calcolatori</h2>
+
+    <p>Definizioni:<br>
+        <b>RETE</b>: interconnessione di dispositivi in grado di scambiarsi informazioni, quali sistemi terminali, router, switch e modem.<br>
+        Sistemi terminali: sono gli host<br>
+        Dispositivi di interconnessione: Router (liv 3) interconnettono reti , Switch (liv 2) collegano gli host a livello locale<br>
+        Link: Collegamenti, mezzi trasmissivi (fibra, cablati, wireless ecc...)<br>
+    </p>
+
+    <p>
+        <b>LAN</b>: Local Area Network, reti di computer circoscritte in una piccola area (reti private)
+        <br><b>WAN</b>: Wide Area Network, Rete geografica, inteconnette LAN, gestite da operatori di rete (ISP)
+        <ul>
+            <li>WAN punto - punto: collega due dispositivi tramite mezzo trasmissivo</li>
+            <li>WAN a commutazione: collega più di due punti di terminazione usando elementi di commutazione (servono per connettere fra loro due o più linee di trasmissione)</li>
+        </ul>
+    </p>
+    <p>Gli host si connettono a internet tramite <b>Internet Service Provider (ISP)</b> che a loro volta sono interconnessi tra loro</p>
+    <p>Gli ISP prendono tot punti di accesso alla rete e tra ISP possono essere punti detti <b>Peering point</b> dove si connettono due ISP e si accordano tra loro per il traffico su quel canale. Oppure ci sono i <b>IXP Internet eXchange Point</b> dove si fa peering tra due o più ISP</p>
+    <p>Ip produttori di contenuti (Amazon, Netflix, Facebook ecc..) possono creare la loro propria rete privata dette <b>Content provider network</b></p>    
+    <p style="text-align: center;">
+        <img src="img/isp.png" style="width: 70%; height: 70%;" alt="">
+    </p>
+    
+    
+    <h5>Commutazione di pacchetto e circuito, Metriche</h5>
+    <p><b>Tecniche di commutazione</b> sono le modalità con cui viene determinato il percorso sorgente-destinazione e vengono dedicate ad esso le risorse della rete
+    </br>
+    <b>Commutazione di circuito</b>: Creazione di un cammino dedicato tra due dispositivi, permanente ed esclusive sono le risorse fisiche dei nodi della rete. Si fa un setup della comunicazione 
+    <br>
+    <b>Commutazione di pacchetto</b>: Il flusso di dati punto-punto viene suddiviso in pacchetti instradato singolarmente e in modo indipendente dagli altri
+    </p>
+
+
+    <h5>METRICHE di una RETE</h5>
+    <p><mark>DA FARE....</mark></p>
+
+    <h5>Cosa è un PROTOCOLLO</h5>
+    <p>Protocollo: Insieme di regole che permettono a due entità di comunicare</p>
+    <p>Oggi giorno i protocolli non sono unici ma in insieme strutturato e organizzato di protocolli su più "livelli" chiamati anche MODULI</p>
+    <h5>Perchè stratificare</h4>
+    <p>Scomposizione dei sistemi complessi:</p>
+    
+    <ul>
+        <li>La struttura permette di identificare le relazioni tra gli elementi del sistema complesso</li>
+        <ul>
+            <li>modello di riferimento stratificato</li>
+            <li>Suddivisione di funzioni e attori</li>
+        </ul>
+        <li>Facilito la manutezione</li>
+        <ul>
+            <li>Un modulo svolge un insieme limitato di compiti e appare come una scatola nera su cui inserisco input e prelevo dati elaborati</li>
+            <li>Ogni livello offre: servizi allo strato superiore, utilizza servizi del livello inferiore, implementa azioni all'interno di se</li>
+        </ul>
+        <li>Separazione tra servizi offerti e implementazione</li>
+    </ul>
+
+    <h5>Come stratificare</h5>
+    <p>Principi base:</p>
+    <ul>
+        <li>Separation of Concern</li>
+        <li>Information hiding</li>
+    </ul>
+
+    <p>In questo modo si soffisfano i requisiti di efficacia e efficienza.</p>
+    <p>Livelli INDIPENDENTI utlizzabili tramite interfaccie nascondendo implementazione.Il numero degli strati e minimizzato e man mano che si va avanti cambia il livello di astrazione sui dati</p>
+
+    <h3>OSI RM (Open System Interconnection)</h3>
+    <h5>Sistemi chiusi</h5>
+    <p>Le prime reti di calcolatori erano sistemi chiusi (marche e macchine proprietarie, difficile l'integrazione tra marche diverse). </p>
+
+    <h5>Sistemi aperti</h5>
+    <p>Tramite questi si può permettere di creare una rete di calcolatori in cui qualsiasi terminale può comunicare con un qualsiasi fornitore di servizi mediante qualsiasi rete </p>
+    <p>Sono necessari degli STANDARD</p>
+
+    <h5>Definizioni:</h5>
+    <p>
+        <ul>
+            <li>Strato: modulo definito attraverso i servizi, i protocolli e le intefaccie che lo caratterizzano</li>
+            <li>Servizio: Servizio che uno strato fornisce ad uno strato soprastante attraverso primitive di servizio</li>
+            <li>Interfaccia: Insieme di regole che governano il formato e la sintassi delle unità di dati che vengono scambiati <b>tra due strati adiacienti della stessa entità</b></li>
+        </ul>
+    </p>
+
+    <h5>Cosa specificare in un protocollo?</h5>
+    <ul>
+        <li>La <b>Sintassi</b> di un messaggio</li>
+        <li>La <b>Semantica</b> del messaggio</li>
+        <li>Le azioni da intraprendere dopo la ricezione di un msg</li>
+    </ul>
+    <hr>
+    <h5>Strato nel modello ISO/OSI</h5>
+    <ol>
+        <li>Livello Fisico</li>
+        <ul>
+            <li>Comprende tutte le funzioni che permettono una connessione a livello fisico</li>
+            <li>Si occupa della trasmissione dei bit attraverso il mezzo trasmissivo e caratteristiche di cavi e connettori</li>
+        </ul>
+        <li>Livello Collegamento</li>
+        <ul>
+            <li>Definisce regole per inviare e ricevere info tra due sistemi di comunicazione</li>
+            <li>Permette il trasferimento affidabile di dati attraverso il livello fisico</li>
+            <li>Incapsula i dati da inviare in un pacchetto provvisto di header e tail, chiamato FRAME</li>
+        </ul>
+        <li>Livello di Rete</li>
+        <ul>
+            <li>Gestione del "ROUTING" dei pacchetti, ovvero si determina la sequenza di collegamenti punto-punto necessari per trasmettere un pacchetto da un nodo generico dalla rete a un altro</li>
+        </ul>
+        <li>Livello di Trasporto</li>
+        <ul>
+            <li>Instaura, mantiene e termina una connessione</li>
+            <li>Funzionalità per frammentare e ricomporre dati, rileva e corregge errori, controlla il flusso di dati</li>
+            <li>Fornisce un servizio di trasferimento dati end-to-end</li>
+        </ul>
+        <li>Livello Sessione</li>
+        <ul>
+            <li>Assembla il dialogo tra nodi in unità logiche (Sessione)</li>
+        </ul>
+        <li>Livello Presentazione</li>
+        <ul>
+            <li>Adatta la sintassi dei dati di ciascuna applicazione alla sintassi richiesta dalla sessione</li>
+        </ul>
+        <li>Livello Applicazione</li>
+        <ul>
+            <li>Protocolli a supporto di applicazioni distribuite</li>
+        </ul>
+    </ol>
+    <hr>
+    <p style="text-align: center;">
+        <img src="img/isoosi.png" alt="" style="align-content: center;">
+    </p>
+    <hr>
+    <h5>Stack protocollare TCP/IP</h5> 
+    <p>Famiglia di protocolli attualmente utilizzata oggi in internet. Si tratta di una <b>gerarchia di protocolli</b> ciascuno dei quali fornisce funzionalità specifiche</p>   
+    <h6>TCP/IP = 5 Livelli: 4 SW + 1 HW</h6>
+    <ul>
+        <li>Applicazione: supporta le applicazioni di rete, collegamento logico end-to-end (ftp,smtp,http)</li>
+        <li>Trasporto: trasferimento dati ent-to-end, da sorgente a destinatario (tcp, udp)</li>
+        <li>Rete: Instradamento dei datagrammi dalla sorgente alla destinazione (Ip, ICMP)</li>
+        <li>Link: trasferimento dati in frame attraverso il collegamento tra elementi di rete vicini (ppp, ethernet, altro...)</li>
+        <li>Fisico: trasferimenti dei biti di un frame sul mezzo trasmissivo</li>
+    </ul>
+
+    <h2>Strato Applicativo</h2>
+    
+  
+
+    <h3>Paradigmi del livello applicazione e applicazione di rete</h3>
+    <h3>URI, URL e URN</h3>
+    <h3>HTTP: HyperText Transfer Protocol</h3>
+
+
+
+    <hr>
+    <h3>Telnet</h3>
+    <p>TErminaL NETwork: Protocollo di terminale remoto il cui scopo è quello di permettere l'uso interattivo di macchine remote:
+        <ul>
+            <li>lavoro remoto</li>
+            <li>accesso multiplo ad un computer</li>
+            <li>coppie generiche client-server per login remoto (<b>non specializzate per tipo di applicativo</b>)</li>
+        </ul>
+    <br>
+    Permettte all'utente di effetthare una sessione di login remoto nella macchina remota e quindi inviare i comandi mascherando sia la rete che i sistemi operativi e utilizzanod una interfaccia minima ma veloce.
+    Dopo il login telnet passa le battute dei tasti della macchina locale alla macchina remota e l'output della macchina remota viene trasportato al terminale dell'utente
+    </p>
+    <ul>
+        Il modello TELNET include:
+        <li>Un programma server che accetta le richieste</li>
+        <li>Un programma client che effettua le richieste
+            <ul>
+                <li>Interagisce com il terminale utente sull'host locale</li>
+                <li>Scambia messaggi con il telnet server</li>
+            </ul>
+        </li>
+        <li>Protocollo TELNET [RFC 854]
+            <ul>
+                <li>Il client stabilisce con il server una connessione TCP</li>
+                <li>Il client accetta le battute dei tasti e le invia al server. Accetta i caratter i che il server manda indietro e li visualizza sul terminale utente</li>
+                <li>Il server accetta la connessione TCP e trasmette i dati al sistema operativo locale</li>
+            </ul>
+        </li>
+        <li>Il client si connette alla<b> PORTA 23</b> del server. Connessione TCP persistente per tutta la durata della sessione di login.</li>
+    </ul>
+        
+    <p style="text-align: center;"><img src="img/telnet.png" height="70%" width="70%" alt=""></p>
+    
+    <p>Pseudo terminal driver: entry point del Sistema operativo che consente di trasferire caratteri a un processo come se provenissero dal terminale. Quindi in questo caso accetta i caratteri dal server Telnet e li trasmette al SO che poi invierà ai rispettivi applicativi opportuni.</p>
+    <p>Telnet assume che sui due host siano in exec un <b>NVT - Network Virtual Terminal</b>. La connessione TCP avviene tra questi due terminali virtuali che serve per avere un terminale "comune" a due host che potrebbero essere potenzialmente molto diversi. <br> 
+    Questi terminali NVT si scambiano dati a 7 bit US-ASCII. Dati inviati come ottetti dove il primo è settato a 0.</p>
+    <p style="text-align: center;"><img src="img/telnet2.png" height="70%" width="70%" alt=""></p>
+    
+
+    
+    <p>SSH è un protocollo creato per sostituire Telnet poichè quest'ultimo passa tutti i dati in chiaro (anche le password)</p>
+   
+   
+    <hr>
+    <h3>Email - SMTP</h3>
+
+    <p style="text-align: center;">
+        <img src="img/SMTP.png" style="width: 70%; height: 70%;" alt="">
+    </p>
+
+    <p style="text-align: center;">
+        Esempio nterazione con server SMTP: <br>
+        <img src="img/smtp2.png" style="width: 70%; height: 70%;" alt="">
+    </p>
+    
+    <hr>
+    <h3>File Transfer Protocol - FTP </h3>
+    <p style="text-align: center;">
+       Esempio connessione tra client e server con FTP per trasferimento file: <br>
+        <img src="img/ftp.png" style="width: 70%; height: 70%;" alt="">
+    </p>
+    
+
+    <hr>
+    <h3>DNS - Domain name Service</h3>
+    <hr>
+
+    <h2>Strato di Trasporto</h2>
+    <h5>Obiettivo</h5>
+    <p>Realizzare una comunicazione logica fra due processi residenti in host system diversi. Logico perchè i due processi pensano di essere fisicamente collegati e non c'è bisogno di sapere dei dettagli dell'infrastruttura fisica sottostante per la comunicazione. <br> Offre servizi allo stato di <b>Applicazione</b>. Usa i servixi dello strato di <b>Rete</b>.</p>
+
+    <ul>
+        <li>Servizio privo di connessione
+            <ul>
+                <li>In un servizio privo di connessione il processo mittente consegna messaggi al livello di trasporto uno per uno</li>
+                <li>Il livello di trasporto tratta ogni messaggio come entità singola senza mantenere alcuna relazione fra di essi
+                    <ul>
+                        <li>I messaggi possono non essere consegnati o non arrivare in ordine</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <li>Servizio orientato alla connessione
+            <ul>
+                <li>In un servizio orientato alla connessione client e server stabiliscono luna connessione <b>LOGICA</b></li>
+            </ul>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            Protocollo TCP [RFC 793]
+            <ul>
+                <li>Gestione della connessione</li>
+                <li>Consegna affidabile (Priva di errori, completezza e ordine)</li>
+                <li>Flow Control</li>
+                <li>Controllo di congestione</li>
+            </ul>
+            <li>Il protocollo UDP [RFC 768]</li>
+            <ul>
+                <li>Senza connessione</li>
+                <li>Non affidabile, consegne senza ordine</li>
+                <li>Estensione del servizio di consegna "host to host" di ip</li>
+            </ul>
+        </li>
+        <li>Servizi offerti:
+            <ul>
+                <li>Multiplexing / demultiplexing</li>
+                <li>Controllo degli errori (header + dati)</li>
+            </ul>
+        </li>
+    </ul>
+    <p style="text-align: center;">
+        <img src="img/trasp1.png" style="width: 70%; height: 70%;" alt="">
+        <img src="img/trasp2.png" style="width: 70%; height: 70%;" alt="">    
+    </p>
+
+    <h5>Demultiplexing</h5>
+    <p>Lo strato di trasporto provvede allo <b>Smistamento</b> dei pacchetti fra la rete e le applicazioni (I processi)</p>
+   
+    <div style="overflow: hidden;">
+        
+        <img src="img/demulti.png" style="height: 20%; width: 20%; float: right;" alt="">
+        <p>Es: utente che scarica pagine web && trasferisce file con FTP && ha 1 sessione telnet aperta allora ha 3 processi applicazione che usano TCP e quando il libello trasporto riceve i dati (da sotto, ovvero rete) deve <i>dirigerli</i> a uno di questi processi</p>
+        <p>L'host riceve il datagramma IP. Ogni datagramma ha indirizzo IP sorgente e indirizzo IP destinatario. Ogni datagramma trasporta un segmento di livello trasporto. Ogni segmento contiene nell'header un numero di porta sorgente e un numero di porta destinazione</p>
+    </div> 
+
+    <h5>Multiplexing</h5>
+    <p>Lo strato di trasporto provvede all'accorpamento dei flussi dati dai processi verso la rete "imbustando" i dati ricevuti (dall'alto) con un preambolo</p>
+    <p>In generale le operazioni di multi e demulti si basano sui socket address dei processi (Il <b>Socket address</b> è la combinazione tra ip e numero porta)</p>
+    <p style="text-align: center;">
+        <img src="img/multdem.png" style="width: 70%; height: 70%;" alt="">
+    </p>
+
+
+    <h5>Concetto di porta</h5>
+    <p>Ogni comunicazione di trasporto (TCP o UDP) è identificata in maniera univoca grazie alle coppie <b>numero IP/porta</b> degli host </p>
+    <p>La "porta" è un numero (unsigned int - 16 bit) che viene assegnato a un processo, o più precisamente a un punto di demultiplexing dei protocolli TCP o UDP. L'indirizzo IP è un indirizzo di 32 bit presente nello stack TCP/IP</p>
+    <p>
+        <ul>
+            <li>System ports: da 0 a 1023, assegnate da IANA</li>
+            <li>User ports: da 1024 a 49151, assegnate da IANA</li>
+            <li>Dynamic Port: non assegnate da IANA</li>
+        </ul>
+    Il sistema operativo assegna dinamicamente le porte ai processi che ne fanno richiesta
+    </p>
+    <p style="text-align: center;">
+        <img src="img/ports.png" style="width: 70%; height: 70%;" alt="">
+    </p>
+
+
+    <h5>Demultiplexing Senza connessione - UDP</h5>
+    <ul>
+        <li>Creazione automatica di socket DatagramSocket mySocket = new DatagramSocket();</li>
+        <li>Socket UDP identificata dalla coppia (ip, porta)</li>
+        <li>Lo strato di trasporto dell'host ricevente consegna il segmento UDP alla <b>socket identificata da IP e porta destinazione</b></li>
+        <li>I datagramma con IP e/o porta mittente differenti ma stessi IP e porta destinatari vengono consegnati alla stessa socket</li>
+    </ul>
+
+    <p style="text-align: center;">
+        <img src="img/demLess.png" style="width: 70%; height: 70%;" alt="">
+    </p>
+
+    <h5>Demultiplexing Orientato alla connessione</h5>
+    <ul>
+        <li>La socket TCP connessa è identificata da 4 parametri:
+            <ul>
+                <li>IP origine</li>
+                <li>num porta origine</li>
+                <li>IP destinazione</li>
+                <li>num porta destinazione</li>
+            </ul>
+        </li>
+        <li>L'host ricevente usa i 4 parametri per inviare il segmento alla socket appropriata</li>
+        <li>Un host server può supportare più socket contemporaneamente</li>
+        <li>es. nei server Web ci sono socket diversi uno per client</li>
+    </ul>
+
+
+    <p style="text-align: center;">
+        <img src="img/demConn.png" style="width: 70%; height: 70%;" alt="">
+    </p>
+
+    
+    <h5>TCP</h5>
+
+    <ul>
+        <li>Orientato allo STREAM
+            <ul>
+                <li>Lunghezza di byte indefinita a priori</li>
+                <li>TCP vede i dati come un flusso di dati ordinati, ma non strutturati</li>
+            </ul>
+        </li>
+        <li>Orientato alla CONNESSIONE
+            <ul>
+                <li>I processi effettuano un <b>handshake</b> PRIMA dello scambio di dati</li>
+                <li><b>ORIENTATO</b> poiche lo stato della connessione risiede sui punti terminali non sugli elementi intermedi dlla rete (ad es. router)</li>
+                <li>La connessione è vista dagli applicativi come un circuito dedicato</li>
+            </ul>
+        </li>
+        <li>
+            Connessione FULL-DUPLEX
+            <ul>
+                <li>il flusso di dati può avvenire da entrambe le direzioni contemporaneamente poichè slegate</li>
+                <li>connessione punto-punto</li>
+            </ul>
+        </li>
+    </ul>
+
+
+    <h5>Proprietà TCP</h5>
+    <ul>
+        <li><b>Trasferimento dati ordinato e affidabile</b></li>
+        <li>Controllo del flusso</li>
+        <li>Controllo di congestione</li>
+        <li>Trasferimento bufferizzato
+            <ul>
+                <li>Il software del protocollo TCP è libero di suddividere il flusso di byte in <b>"<u>segmenti</u>" in modo indipendente dal programma applicativo</b> che li ha generati usanto BUFFER</li>
+                <li>La bufferizzazione consente una riduzione del traffico sulla rete ottimizzando</li>
+            </ul>
+        </li>
+    </ul>
+
+
+    <figure style="text-align: center;">
+        <img src="img/trasfbudd.png" style="width: 70%; height: 70%;" alt="">
+        <figcaption>I processi a liv applicativo scrivono e leggono byte nel/dal buffer a velocità diverse. Entrambi i lati avranno buffer di invio e buffer di ricezione</figcaption>
+    </figure>
+
+    <h5>TCP - Formato segmento, apertura e chiusura connessione</h5>
+
+    <p>Il flusso di byte viene partizionato in <b>SEGMENTI</b> dove ognuno ha un suo header e ognuno viene consegnato al livello IP</p>
+
+    <ul>
+        <li>TCP numera i BYTE (e non i segmenti)</li>
+        <li><mark>Numero di sequenza</mark> associato a un segmento = numero (nel flusso) del 1° byte (di dati) del segmento</li>
+        <li><mark>Numero di riscontro</mark> =  numero ultimo byte correttamente ricevuto + 1</li>
+    </ul>
+
+    <figure style="text-align: center;">
+        <img src="img/pdutcp.png" style="width: 70%; height: 70%;" alt="">
+        <figcaption>Generico Segmento tcp. IL segmento è il PDU del TCP</figcaption>
+    </figure>
+
+    <h6>Segmento TCP - note</h6>
+    <ul>
+        <li>Numero sequenza, Numero di riscontro, Finestra
+            <ul>
+                <li>Essi permettono il <i>flow control</i>, il meccanismo di trasmissione e il riordino dei pacchetti in ricezione</li>
+            </ul>
+        </li>
+        <li>Porta (16 bit): numeri di porta della comunicazione</li>
+        <li>Numero di sequenza (32 bit): numero di sequenza nello stream <u>del primo byte di dati</u> di questo segmento. Se il flag <mark>SYN</mark> è settato il numero di sequenza è <mark>ISN</mark> (Initial sequence number) e il primo byte di dati è ISN+1 </li>
+        <li>Numero di riscontro (32 bit): se il bit <mark>ACK</mark> è settato, questo campo contiene <u>il valore del prossimo numero di sequenza che il mittente del segmento di aspetta di ricevere dall'altro host</u>.</li>
+        <li>Hlen (4 bit): lunghezza dell'header TCP espressa in parole da 4 byte</li>
+    </ul>
+
+    <h6>Segmento TCP - campi</h6>
+    <ul>
+        <li><b>Bit Codice: </b>sono 6 flag e servono per:
+            <ul>
+                <li>URG: puntatore urgente per dati in via prioritaria</li>
+                <li>ACK: il campo numero di riscontro contiene dati significativi</li>
+                <li>PSH: Funzione Push (Trasferimento immediato dei dati in un segmento dal livello di trasporto al livello applicativo) </li>
+                <li>RST: reset connessione</li>
+                <li>SYN: Sincronizza il numero di sequenza</li>
+                <li>FIN: Non ci sono altri dati dal mittente - chiusura connessione</li>
+            </ul>
+        </li>
+
+        <li>Finestra di ricezione (16 bit): indica il numero di byte di dati a partire da quello indicato nel campo <i>Numero di Riscontro</i> che il mittente di questo segmento è in grado di accettare</li>
+        <li>Checksum (16 bit): Usato per rilevare errori </li>
+        <li>Opzioni: negoziazione di vari parametri</li>
+        <li>Campo URGENT: per trasmissioni di dati "fuori banda" ovvero in priorità alta gestita dall'applicazione</li>
+        <li>Puntatore Urgente (16 bit): offset positivo a partire dal <i>Numero di sequenza</i> del segmento corrente. Fa passare i dati urgenti in testa alla coda di ricezione</li>
+    </ul>
+
+    <h5>Gestione connessione</h5>
+    <ul>
+        <li>Handshaking a 3 vie per istaurazione connessione</li>
+        <li>Trasferimento dati</li>
+        <li>Chiusura connessione</li>
+    </ul>
+    <h6>Apertura connessione</h6>
+    <figure style="text-align: center;">
+        <img src="img/apconn.png" style="width: 70%; height: 70%;" alt="">
+        <figcaption>Generico Segmento tcp. IL segmento è il PDU del TCP</figcaption>
+    </figure>
+
+    <h6>Chiusura connessione</h6>
+    <ul>
+        <li>Client e server chiudono il loro lato della connessione
+            <ul><li>Invio del segmento TCP con bit FIN=1</li></ul>
+        </li>
+        <li>Ciascuno risponde al FIN ricevuto con un ACK
+            <ul><li>Quando viene ricevuto un FIN, l'ACK può essere combinato con il proprio FIN</li></ul>
+        </li>
+        <li>è possibile anche lo scambio simultaneo di FIN</li>
+    </ul>
+    <figure style="text-align: center;">
+        <img src="img/closcon.png" style="width: 70%; height: 70%;" alt="">
+        <figcaption>Generico Segmento tcp. IL segmento è il PDU del TCP</figcaption>
+    </figure>
+
+
+
+
+
+
+
+
+    <h5>TCP - Trasferimento dati affidabile, controllo flusso, controllo di congestione</h5>
+
+    <h5>UDP</h5>
+
+    <h5>Strato applicativo HTTP2 HTTP3 QUIC</h5>
+
+
+
+
+    <h2>Strato di Rete</h2>
+    <ul>
+        <li>Responsabile della consegna dei datagrammi tra host</li>
+        <li>Offre servizi allo strato di trasporto</li>
+        <li>Utilizza i servizi dello strato di collegamento</li>
+    </ul>
+    <p>Funzionamento base</p>
+    <ol>
+        <li>L'entità a livello di rete riceve i segmenti dal livello di trasporto nell'host mittente, incapsula i segmenti in datagrammi</li>
+        <li>I datagrammi sono inoltrati al prossimo nodo (host o router) </li>
+        <li>Il router esamina i campi intestazione in tutti i datagrammi IP che lo attraversano e li inoltra da un collegamento in ingresso ad un collegamento in uscita</li>
+        <li>Sul lato destinatario, consegna i segmenti al livello di trasporto (Demultiplexing TCP o UDP)</li>
+    </ol>
+
+    <div style="overflow: hidden; border-style: dotted; border-color: blue;">
+        
+        <img src="img/schem.png" style="height: 20%; width: 20%; float: right;" alt="">
+        <p>Il livello rete è presente negli host mittente, destinatario e nei router (Il liv trasporto solo negli host terminali) e riesce a interconnettere reti <b>ETEROGENEE</b></p>
+        <p>Internet: rete logica costruita da un insieme di reti fisiche</p>
+        <p>Grazie al livello di rete si offre un'astrazione che consente agli host e reti eterogenei di funzionare dal punto di vista logico come una singola rete</p>
+        <p>Modello a clessidra: Innovazione possibile nei livelli sottostanti e superiori</p>
+    </div> 
+
+
+
+    <h6>Servizi a livello Rete</h6>
+    <ul>
+        <li>Suddivisione in pacchetti</li>
+        <li>Instradamento (routing)</li>
+        <li>Inoltro (forwarding)</li>
+    </ul>
+
+
+
+    <div style="margin-top: 200px;"></div>
+
+</body>
+</html>
